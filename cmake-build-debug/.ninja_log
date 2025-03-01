@@ -1,0 +1,18 @@
+# ninja log v6
+9	5045	7541472532375910	CMakeFiles/ElaboratoLab.dir/main.cpp.obj	44d963bea4d5bbdb
+5046	5542	7541472582729936	ElaboratoLab.exe	15a1bbc016848459
+20	1454	7493269446823287	CMakeFiles/ElaboratoLab.dir/ChatRegistry.cpp.obj	7645357b50ec2d79
+6	1421	7620342393019354	build.ninja	a38b664fd93a75c6
+97	1875	7621950232803369	CMakeFiles/my_tests.dir/ChatRegistry.cpp.obj	eff91a0ead02a110
+67	2800	7621950232501405	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	954f916c1e313db1
+81	3162	7621950232652689	CMakeFiles/my_tests.dir/test.cpp.obj	985445a27898841a
+38	14977	7621950232218899	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	cdbd5304b6e7e314
+14990	22888	7621950381733426	lib/libgtest.a	5e4f2e5c8cdffe63
+22888	22985	7621950460715919	lib/libgtest_main.a	bacc755345f13b8c
+22985	27166	7621950503374211	my_tests.exe	636a708d4c2c23f2
+22985	27166	7621950503374211	my_tests[1]_tests.cmake	636a708d4c2c23f2
+22985	27166	7621950503374211	C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug/my_tests[1]_tests.cmake	636a708d4c2c23f2
+25	3517	7625572535660481	CMakeFiles/my_tests.dir/test.cpp.obj	985445a27898841a
+3518	8845	7625572623711823	my_tests.exe	636a708d4c2c23f2
+3518	8845	7625572623711823	my_tests[1]_tests.cmake	636a708d4c2c23f2
+3518	8845	7625572623711823	C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug/my_tests[1]_tests.cmake	636a708d4c2c23f2

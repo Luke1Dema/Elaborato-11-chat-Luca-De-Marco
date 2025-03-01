@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug/my_tests[1]_tests.cmake")
+  include("C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug/my_tests[1]_tests.cmake")
+else()
+  add_test(my_tests_NOT_BUILT my_tests_NOT_BUILT)
+endif()
