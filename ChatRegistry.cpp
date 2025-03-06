@@ -8,7 +8,7 @@ void ChatRegistry::addChat(const Chat &chat) {
     std::string key = generateChatKey(chat.getUser1(), chat.getUser2());
     chats.insert(std::pair<std::string, Chat>(key, chat));
 }
-
+//sender e destinatatio diversi
 void ChatRegistry::addMessageToChat(const User &user1, const User &user2, const Message &message) {
     std::string key = generateChatKey(user1.getUsername(), user2.getUsername());
 

@@ -1,5 +1,0 @@
-add_test([=[ChatRegistryTest.AddChat]=]  C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug/my_tests.exe [==[--gtest_filter=ChatRegistryTest.AddChat]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[ChatRegistryTest.AddChat]=]  PROPERTIES WORKING_DIRECTORY C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-add_test([=[ChatRegistryTest.AddMessageToChat]=]  C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug/my_tests.exe [==[--gtest_filter=ChatRegistryTest.AddMessageToChat]==] --gtest_also_run_disabled_tests)
-set_tests_properties([=[ChatRegistryTest.AddMessageToChat]=]  PROPERTIES WORKING_DIRECTORY C:/Users/lckde/CLionProjects/ElaboratoLab/cmake-build-debug SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
-set(  my_tests_TESTS ChatRegistryTest.AddChat ChatRegistryTest.AddMessageToChat)

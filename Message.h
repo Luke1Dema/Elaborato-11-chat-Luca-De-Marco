@@ -25,10 +25,11 @@ public:
         return content;
     }
 
-    void displayMessage() const {
+    void displayMessage() const {   //restituisce stringa
         std::cout << sender.getUsername() << ": " << content << std::endl;
     }
 
+    //aggiungere attributo letto
 private:
     User sender;
     std::string content;

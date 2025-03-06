@@ -25,7 +25,7 @@ TEST(ChatRegistryTest, AddChat) {
 // Test per aggiungere un messaggio in una chat tra utenti
 TEST(ChatRegistryTest, AddMessageToChat) {
     ChatRegistry registry;
-    User user1("User1"), user2("User2");
+    User user1("User1"), user2("User1");
     Message msg(user1 ,"Test message");
 
     registry.addMessageToChat(user1, user2, msg);
@@ -37,7 +37,7 @@ TEST(ChatRegistryTest, AddMessageToChat) {
     EXPECT_NE(output.find("Test message"), std::string::npos); // Controlla se il messaggio è stato salvato
 }
 
-
+//controllare destinatario diverso da sender
 
 
 
