@@ -11,7 +11,7 @@
 // Classe che rappresenta il registro delle chat
 
 class ChatRegistry {
-//agguingere metodo che conta messaggi da leggre
+//agguingere metodo che conta messaggi da leggere
 public:
 
     void addChat(const Chat& chat);

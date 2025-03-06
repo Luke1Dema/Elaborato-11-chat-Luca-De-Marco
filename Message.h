@@ -25,8 +25,8 @@ public:
         return content;
     }
 
-    void displayMessage() const {   //restituisce stringa
-        std::cout << sender.getUsername() << ": " << content << std::endl;
+    std::string displayMessage() const {
+        return sender.getUsername() + ": " + content;
     }
 
     //aggiungere attributo letto

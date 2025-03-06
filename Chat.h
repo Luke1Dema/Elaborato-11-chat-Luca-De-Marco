@@ -20,12 +20,15 @@ public:
         messages.push_back(message);
     }
 
-    void displayChat() const {   //restituisce stringa
-        std::cout << "Chat between " << user1.getUsername() << " and " << user2.getUsername() << ":\n";
+    std::string displayChat() const {
+        std::string chat = "Chat between " + user1.getUsername() + " and " + user2.getUsername() + ":\n";
         for (const auto& msg : messages) {
-            msg.displayMessage();
+            chat += msg.displayMessage() + "\n";
         }
+        return chat;
     }
+
+
 //funzione per leggere messaggio i-esimo
 //funzione che rstituisce chat a partire da nome utente
 //funzione che cerca messaggio
