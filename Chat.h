@@ -12,6 +12,7 @@
 
 // Classe che rappresenta una chat tra due utenti
 
+
 class Chat {
 public:
     Chat(const User& user1, const User& user2) : user1(user1), user2(user2) {}
@@ -20,18 +21,17 @@ public:
         messages.push_back(message);
     }
 
-    std::string displayChat() const {
+    std::string displayChat() {
         std::string chat = "Chat between " + user1.getUsername() + " and " + user2.getUsername() + ":\n";
-        for (const auto& msg : messages) {
+        for ( auto& msg : messages) {
             chat += msg.displayMessage() + "\n";
+            msg.setRead(true);
         }
         return chat;
     }
 
 
-//funzione per leggere messaggio i-esimo
-//funzione che rstituisce chat a partire da nome utente
-//funzione che cerca messaggio
+
     std::string getUser1() const {
         return user1.getUsername();
     }

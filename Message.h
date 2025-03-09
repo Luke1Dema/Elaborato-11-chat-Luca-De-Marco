@@ -12,10 +12,13 @@
 
 // Classe che rappresenta un messaggio tra due utenti
 
+
+
 class Message {
 public:
+
     Message(User  sender, std::string  content)
-            : sender(std::move(sender)), content(std::move(content)) {}
+            : sender(std::move(sender)), content(std::move(content)), read(false) {}
 
     std::string getSenderName() const {
         return sender.getUsername();
@@ -25,13 +28,22 @@ public:
         return content;
     }
 
+    bool isRead() const {
+        return read;
+    }
+
+    void setRead(bool status) {
+        Message::read = status;
+    }
+
     std::string displayMessage() const {
         return sender.getUsername() + ": " + content;
     }
 
-    //aggiungere attributo letto
+
 private:
     User sender;
     std::string content;
+    bool read;
 };
 #endif //ELABORATOLAB_MESSAGE_H

@@ -10,8 +10,10 @@
 
 // Classe che rappresenta il registro delle chat
 
+
+
 class ChatRegistry {
-//agguingere metodo che conta messaggi da leggere
+
 public:
 
     void addChat(const Chat& chat);
@@ -19,7 +21,7 @@ public:
     void addMessageToChat(const User& user1, const User& user2, const Message& message);
 
 
-    void displayAllChats() const;
+    void displayAllChats();
 
 private:
     std::map<std::string, Chat> chats;

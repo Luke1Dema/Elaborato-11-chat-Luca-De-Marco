@@ -29,8 +29,8 @@ void ChatRegistry::addMessageToChat(const User &user1, const User &user2, const 
     }
 }
 
-void ChatRegistry::displayAllChats() const {
-    for (const auto& pair : chats) {
+void ChatRegistry::displayAllChats() {
+    for ( auto& pair : chats) {
         std::cout << pair.second.displayChat() << std::endl;
     }
 }
