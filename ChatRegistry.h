@@ -23,6 +23,9 @@ public:
 
     void displayAllChats();
 
+    int messagesToRead() const;
+
+
 private:
     std::map<std::string, Chat> chats;
 
