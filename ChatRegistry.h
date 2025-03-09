@@ -25,6 +25,7 @@ public:
 
     int messagesToRead() const;
 
+    void readNthMessage(User sender, User recipient, int n) const;
 
 private:
     std::map<std::string, Chat> chats;

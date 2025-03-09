@@ -41,5 +41,14 @@ int ChatRegistry::messagesToRead() const {    //COMMIT LATER(Chat e ChatRegistry
     return num;
 }
 
+void ChatRegistry::readNthMessage(User sender, User recipient, int n) const {
+    if(sender.getUsername()!=recipient.getUsername()) {
+        std::string key = generateChatKey(sender.getUsername(), recipient.getUsername());
+        auto itr = chats.find(key);
+        if (itr != chats.end()) {
+            itr->second.readMessage(n);
+        }
+    }
+}
 
 

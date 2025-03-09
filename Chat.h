@@ -51,6 +51,15 @@ public:
         return count;
     }
 
+    void readMessage(int n) const {
+        int count=0;
+        for(auto const&  it : messages){
+            count+=1;
+            if(count==n)
+                std::cout<<it.displayMessage()<<std::endl;
+        }
+    }
+
 
 private:
     User user1;
