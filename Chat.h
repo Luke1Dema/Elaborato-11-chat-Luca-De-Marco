@@ -33,7 +33,7 @@ public:
     }
 
     std::string displayChat() {
-        std::string chat = "Chat between " + user1.getUsername() + " and " + user2.getUsername() + ":\n";
+        std::string chat = "Message from " + user1.getUsername() + " to " + user2.getUsername() + ":\n";
         for ( auto& msg : messages) {
             chat += msg.displayMessage() + "\n";
             msg.setRead(true);
@@ -51,13 +51,17 @@ public:
         return count;
     }
 
-    void readMessage(int n) const {
+    std::string readMessage(int n) {
         int count=0;
-        for(auto const&  it : messages){
+        for(auto &  it : messages){
             count+=1;
-            if(count==n)
-                std::cout<<it.displayMessage()<<std::endl;
+            if(count==n){
+                it.setRead(true);
+                return it.displayMessage();
+            }
+
         }
+        throw std::invalid_argument("MESSAGE DOES NOT EXIST!");
     }
 
 

@@ -33,20 +33,29 @@ void ChatRegistry::displayAllChats() {
     }
 }
 
-int ChatRegistry::messagesToRead() const {    //COMMIT LATER(Chat e ChatRegistry): metodo che conta messaggi da leggere
-    int num=0;
-    for ( auto const& pair : chats) {
-         num+=pair.second.messagesCounter();
+int ChatRegistry::messagesToRead(User sender, User self) const {    //COMMIT LATER(Chat e ChatRegistry): metodo che conta messaggi da leggere
+    if(sender.getUsername()!=self.getUsername()){
+        std::string key = generateChatKey(sender.getUsername(), self.getUsername());
+
+        int num=0;
+        auto itr = chats.find(key);
+        if (itr != chats.end()){
+             num+=itr->second.messagesCounter();
+        }
+
+        std::cout << num <<std::endl;
+        return num;
     }
-    return num;
+    else
+        throw std::invalid_argument("USER AND SENDER HAVE THE SAME NAME!");
 }
 
-void ChatRegistry::readNthMessage(User sender, User recipient, int n) const {
+void ChatRegistry::readNthMessage(User sender, User recipient, int n)  {
     if(sender.getUsername()!=recipient.getUsername()) {
         std::string key = generateChatKey(sender.getUsername(), recipient.getUsername());
         auto itr = chats.find(key);
         if (itr != chats.end()) {
-            itr->second.readMessage(n);
+            std::cout<<itr->second.readMessage(n)<<std::endl;
         }
     }
 }
