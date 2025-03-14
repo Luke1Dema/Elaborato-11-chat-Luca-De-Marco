@@ -41,7 +41,7 @@ public:
         return chat;
     }
 
-    int messagesCounter(User sender) const {
+    int messagesCounter(const User& sender) const {
         int count=0;
         for(auto const&  it : messages){
             if (it.getSenderName()==sender.getUsername()){

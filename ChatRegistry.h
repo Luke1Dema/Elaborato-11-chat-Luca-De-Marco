@@ -23,9 +23,11 @@ public:
 
     void displayAllChats();
 
-    int messagesToRead(User sender, User recipient) const;
+    int messagesToRead(const User& sender, const User& recipient) const;
 
-    void readNthMessage(User sender, User recipient, int n) ;
+    void readNthMessage(const User& sender, const User& recipient, int n);
+
+    Chat ReturnChatWithUser(const User& you, const User& recipient);
 
 private:
     std::map<std::string, Chat> chats;
