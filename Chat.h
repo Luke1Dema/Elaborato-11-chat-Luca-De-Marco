@@ -41,11 +41,13 @@ public:
         return chat;
     }
 
-    int messagesCounter() const {
+    int messagesCounter(User sender) const {
         int count=0;
         for(auto const&  it : messages){
-            if(!it.isRead()){
-                count+=1;
+            if (it.getSenderName()==sender.getUsername()){
+                if(!it.isRead()){
+                    count+=1;
+                }
             }
         }
         return count;

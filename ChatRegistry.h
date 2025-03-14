@@ -32,9 +32,9 @@ private:
 
     // Genera una chiave unica per identificare una chat tra due utenti
     static std::string generateChatKey(const std::string& user1, const std::string& user2) {
-        //?if (user1 < user2)
+        if (user1 < user2)
             return user1 + "_" + user2;
-        //?else return user2 + "_" + user1;
+        else return user2 + "_" + user1;
     }
 };
 #endif //ELABORATOLAB_CHATREGISTRY_H

@@ -40,7 +40,7 @@ int ChatRegistry::messagesToRead(User sender, User self) const {    //COMMIT LAT
         int num=0;
         auto itr = chats.find(key);
         if (itr != chats.end()){
-             num+=itr->second.messagesCounter();
+             num+=itr->second.messagesCounter(sender);
         }
 
         std::cout << num <<std::endl;
