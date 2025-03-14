@@ -29,6 +29,8 @@ public:
 
     Chat ReturnChatWithUser(const User& you, const User& recipient);
 
+    Message SearchMessage (const User& sender, const std::string& content);
+
 private:
     std::map<std::string, Chat> chats;
 

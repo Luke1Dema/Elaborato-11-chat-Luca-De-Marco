@@ -66,6 +66,16 @@ public:
         throw std::invalid_argument("MESSAGE DOES NOT EXIST!");
     }
 
+    Message FindMessage(const std::string& content){
+        for(auto &  it : messages){
+            if(it.getContent()==content){
+                std::cout<< "Message found! Returning message..." <<std::endl;
+                return it;
+            }
+        }
+        throw std::invalid_argument("MESSAGE DOES NOT EXIST!");
+    }
+
 
 private:
     User user1;
