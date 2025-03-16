@@ -24,7 +24,13 @@ int main() {
     registry.addMessageToChat(user3, user1, Message(user3, "Ehi Alice!"));
 
 
+    //Inserire blocchi try-catch dove serve:
+
+    registry.messagesToRead(user1, user2);
     registry.displayAllChats();
+    registry.readNthMessage(user1, user2, 1);
+    registry.ReturnChatWithUser(user1, user2);
+    registry.SearchMessage(user2, "Ciao Alice! Come stai?");
 
     return 0;
 }

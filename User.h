@@ -9,7 +9,6 @@
 #include <string>
 #include <utility>
 
-// Classe che rappresenta un utente
 
 class User {
 public:

@@ -25,6 +25,7 @@ void ChatRegistry::addMessageToChat(const User &user1, const User &user2, const 
             chats.insert(std::pair<std::string, Chat>(key, newChat));
         }
     }
+    else throw std::invalid_argument("USER AND SENDER HAVE THE SAME NAME!");
 }
 
 void ChatRegistry::displayAllChats() {
@@ -44,7 +45,7 @@ int ChatRegistry::messagesToRead(const User& sender, const User& self) const {
         }
         else throw std::invalid_argument("CHAT DOES NOT EXIST!");
 
-        std::cout << num <<std::endl; //
+        std::cout << "You have "<< num << " messages to read." <<std::endl; //
         return num;
     }
     else

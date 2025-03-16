@@ -8,9 +8,6 @@
 #include "Chat.h"
 #include <map>
 
-// Classe che rappresenta il registro delle chat
-
-
 
 class ChatRegistry {
 

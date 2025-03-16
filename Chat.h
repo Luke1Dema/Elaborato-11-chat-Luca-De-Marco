@@ -11,8 +11,6 @@
 #include "User.h"
 #include "Message.h"
 
-// Classe che rappresenta una chat tra due utenti
-
 
 class Chat {
 public:

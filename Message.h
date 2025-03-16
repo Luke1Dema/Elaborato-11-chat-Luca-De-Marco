@@ -10,9 +10,6 @@
 #include <utility>
 #include "User.h"
 
-// Classe che rappresenta un messaggio tra due utenti
-
-
 
 class Message {
 public:
