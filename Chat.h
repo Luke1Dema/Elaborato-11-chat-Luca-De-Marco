@@ -52,16 +52,12 @@ public:
     }
 
     std::string readMessage(int n) {
-        int count=0;
-        for(auto &  it : messages){
-            count+=1;
-            if(count==n){
-                it.setRead(true);
-                return it.displayMessage();
-            }
-
+        if (n >= 0 && n < messages.size()) {
+            auto& it = messages[n];
+            it.setRead(true);
+            return it.displayMessage();
         }
-        throw std::invalid_argument("MESSAGE DOES NOT EXIST!");
+        throw std::out_of_range("MESSAGE DOES NOT EXIST!");
     }
 
     Message FindMessage(const std::string& content){
