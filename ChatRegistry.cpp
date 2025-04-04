@@ -63,7 +63,7 @@ void ChatRegistry::readNthMessage(const User& sender, const User& recipient, int
     }
 }
 
-Chat ChatRegistry::ReturnChatWithUser(const User& you, const User& recipient) {
+Chat ChatRegistry::returnChatWithUser(const User& you, const User& recipient) {
     if(you.getUsername()!=recipient.getUsername()) {
         std::string key = generateChatKey(you.getUsername(), recipient.getUsername());
         auto itr = chats.find(key);
@@ -76,10 +76,10 @@ Chat ChatRegistry::ReturnChatWithUser(const User& you, const User& recipient) {
     throw std::invalid_argument("USER AND SENDER HAVE THE SAME NAME!");
 }
 
-Message ChatRegistry::SearchMessage(const User& self, const std::string& content) {
+std::list<Message> ChatRegistry::searchMessage(const User& self, const std::string& content) {
     for ( auto& pair : chats) {
         if(pair.second.getUser1()==self.getUsername() or pair.second.getUser2()==self.getUsername()){
-           return pair.second.FindMessage(content);
+           return pair.second.findMessage(content);
         }
     }
     throw std::invalid_argument("INVALID USER!");

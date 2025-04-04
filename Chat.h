@@ -8,6 +8,7 @@
 #include <iostream>
 #include <utility>
 #include <vector>
+#include <list>
 #include "User.h"
 #include "Message.h"
 
@@ -60,15 +61,21 @@ public:
         throw std::out_of_range("MESSAGE DOES NOT EXIST!");
     }
 
-    Message FindMessage(const std::string& content){
+
+    std::list<Message> findMessage(const std::string& content){
+        std::list<Message> foundMessages;
         for(auto &  it : messages){
-            if(it.getContent()==content){
-                std::cout<< "Message found! Returning message..." <<std::endl;
-                return it;
+            if(it.getContent().find(content) != std::string::npos){
+                foundMessages.push_back(it);
             }
         }
-        throw std::invalid_argument("MESSAGE DOES NOT EXIST!");
+        if(!foundMessages.empty()){
+            std::cout<< "Messages found! Returning list of messages..." <<std::endl;
+            return foundMessages;
+        }
+        throw std::invalid_argument("NO MESSAGES CONTAINING THE SPECIFIED CONTENT WERE FOUND!");
     }
+
 
 
 private:

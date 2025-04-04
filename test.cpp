@@ -11,7 +11,8 @@
 // Test di ChatRegistry
 class ChatRegistryTest : public ::testing::Test {
 protected:
-
+    User user1{"User1"};
+    User user2{"User2"};
     ChatRegistry chatRegistry;
 };
 
@@ -22,7 +23,7 @@ TEST_F(ChatRegistryTest, AddChat) {
 
     chatRegistry.addChat(chat);
 
-    ASSERT_NO_THROW(chatRegistry.ReturnChatWithUser(user1, user2));
+    ASSERT_NO_THROW(chatRegistry.returnChatWithUser(user1, user2));
 }
 
 TEST_F(ChatRegistryTest, AddMessageToChat_NewChat) {
@@ -32,7 +33,7 @@ TEST_F(ChatRegistryTest, AddMessageToChat_NewChat) {
 
     chatRegistry.addMessageToChat(user1, user2, message);
 
-    Chat chat = chatRegistry.ReturnChatWithUser(user1, user2);
+    Chat chat = chatRegistry.returnChatWithUser(user1, user2);
     ASSERT_EQ(chat.readMessage(0), "Alice: Hello, Bob!");
 }
 
@@ -45,7 +46,7 @@ TEST_F(ChatRegistryTest, AddMessageToChat_ExistingChat) {
     chatRegistry.addMessageToChat(user1, user2, message1);
     chatRegistry.addMessageToChat(user1, user2, message2);
 
-    Chat chat = chatRegistry.ReturnChatWithUser(user1, user2);
+    Chat chat = chatRegistry.returnChatWithUser(user1, user2);
     ASSERT_EQ(chat.readMessage(1), "Alice: How are you?");
 }
 
@@ -56,7 +57,6 @@ TEST_F(ChatRegistryTest, DisplayAllChats) {
 
     chatRegistry.addChat(chat);
 
-    // Redirect cout to a stringstream to capture the output
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -83,7 +83,6 @@ TEST_F(ChatRegistryTest, ReadNthMessage_ExistingChat) {
 
     chatRegistry.addMessageToChat(user1, user2, message);
 
-    // Redirect cout to a stringstream to capture the output
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -100,28 +99,43 @@ TEST_F(ChatRegistryTest, ReturnChatWithUser_ExistingChat) {
 
     chatRegistry.addChat(chat);
 
-    ASSERT_NO_THROW(chatRegistry.ReturnChatWithUser(user1, user2));
+    ASSERT_NO_THROW(chatRegistry.returnChatWithUser(user1, user2));
 }
 
-TEST_F(ChatRegistryTest, SearchMessage_ValidUser) {
-    User user("Alice");
-    User user2("Bob");
-    Message message(user, "Find me!");
+TEST_F(ChatRegistryTest, searchMessage) {
+    Message message1{user1, "Hello, Bob!"};
+    Message message2{user2, "Hi there!"};
+    chatRegistry.addMessageToChat(user1, user2, message1);
+    chatRegistry.addMessageToChat(user1, user2, message2);
 
-    chatRegistry.addMessageToChat(user, user2, message);
-
-    Message foundMessage = chatRegistry.SearchMessage(user, "Find me!");
-    ASSERT_EQ(foundMessage.getContent(), "Find me!");
+    auto results = chatRegistry.searchMessage(user1, "Hello, Bob!");
+    ASSERT_EQ(results.size(), 1);
+    ASSERT_EQ(results.front().getContent(), "Hello, Bob!");
 }
 
-TEST_F(ChatRegistryTest, SearchMessage_InvalidUser) {
-    User user("Alice");
-    User user2("Bob");
-    Message message(user, "Hello, Bob!");
+TEST_F(ChatRegistryTest, searchMessage_MultipleMatches) {
+    Message message1{user1,  "Hello, Bob!"};
+    Message message2{user2, "Hi there!"};
+    Message message3{user1, "Hello again, Bob!"};
+    chatRegistry.addMessageToChat(user1, user2, message1);
+    chatRegistry.addMessageToChat(user1, user2, message2);
+    chatRegistry.addMessageToChat(user1, user2, message3);
 
-    chatRegistry.addMessageToChat(user, user2, message);
+    auto results = chatRegistry.searchMessage(user1, "Hello");
+    ASSERT_EQ(results.size(), 2);
+    auto it = results.begin();
+    ASSERT_EQ(it->getContent(), "Hello, Bob!");
+    ++it;
+    ASSERT_EQ(it->getContent(), "Hello again, Bob!");
+}
 
-    ASSERT_THROW(chatRegistry.SearchMessage(User("Charlie"), "Hello, Bob!"), std::invalid_argument);
+TEST_F(ChatRegistryTest, searchMessage_NonExistent) {
+    ASSERT_THROW(chatRegistry.searchMessage(user1, "Non-existent message"), std::invalid_argument);
+}
+
+TEST_F(ChatRegistryTest, searchMessage_InvalidUser) {
+    User invalidUser{"InvalidUser"};
+    ASSERT_THROW(chatRegistry.searchMessage(invalidUser, "Hello"), std::invalid_argument);
 }
 
 TEST_F(ChatRegistryTest, AddMessageToChat_SameUsernames) {
@@ -217,7 +231,6 @@ TEST_F(ChatTest, DisplayChat) {
 
     std::string expectedOutput = "Message from Alice to Bob:\nAlice: Hello, Bob!\n";
 
-    // Redirect cout to a stringstream to capture the output
     std::stringstream buffer;
     std::streambuf* old = std::cout.rdbuf(buffer.rdbuf());
 
@@ -239,14 +252,35 @@ TEST_F(ChatTest, ReadMessage_NonExistent) {
     ASSERT_THROW(chat.readMessage(1), std::out_of_range);
 }
 
-TEST_F(ChatTest, FindMessage) {
-    Message message{user1, "Hello, Bob!"};
-    chat.addMessage(message);
-    ASSERT_EQ(chat.FindMessage("Hello, Bob!").getContent(), "Hello, Bob!");
+TEST_F(ChatTest, findMessage) {
+    Message message1{user1, "Hello, Bob!"};
+    Message message2{user2, "Hi there!"};
+    chat.addMessage(message1);
+    chat.addMessage(message2);
+
+    auto results = chat.findMessage("Hello, Bob!");
+    ASSERT_EQ(results.size(), 1);
+    ASSERT_EQ(results.front().getContent(), "Hello, Bob!");
 }
 
-TEST_F(ChatTest, FindMessage_NonExistent) {
-    ASSERT_THROW(chat.FindMessage("Non-existent message"), std::invalid_argument);
+TEST_F(ChatTest, findMessage_MultipleMatches) {
+    Message message1{user1, "Hello, Bob!"};
+    Message message2{user2, "Hi there!"};
+    Message message3{user1, "Hello again, Bob!"};
+    chat.addMessage(message1);
+    chat.addMessage(message2);
+    chat.addMessage(message3);
+
+    auto results = chat.findMessage("Hello");
+    ASSERT_EQ(results.size(), 2);
+    auto it = results.begin();
+    ASSERT_EQ(it->getContent(), "Hello, Bob!");
+    ++it;
+    ASSERT_EQ(it->getContent(), "Hello again, Bob!");
+}
+
+TEST_F(ChatTest, findMessage_NonExistent) {
+    ASSERT_THROW(chat.findMessage("Non-existent message"), std::invalid_argument);
 }
 
 int main(int argc, char **argv) {

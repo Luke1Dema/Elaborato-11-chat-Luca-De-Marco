@@ -24,9 +24,9 @@ public:
 
     void readNthMessage(const User& sender, const User& recipient, int n);
 
-    Chat ReturnChatWithUser(const User& you, const User& recipient);
+    Chat returnChatWithUser(const User& you, const User& recipient);
 
-    Message SearchMessage (const User& sender, const std::string& content);
+    std::list<Message> searchMessage (const User& self, const std::string& content);
 
 private:
     std::map<std::string, Chat> chats;

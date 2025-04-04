@@ -29,8 +29,8 @@ int main() {
     registry.messagesToRead(user1, user2);
     registry.displayAllChats();
     registry.readNthMessage(user1, user2, 1);
-    registry.ReturnChatWithUser(user1, user2);
-    registry.SearchMessage(user2, "Ciao Alice! Come stai?");
+    registry.returnChatWithUser(user1, user2);
+    registry.searchMessage(user2, "Ciao Alice! Come stai?");
 
     return 0;
 }
